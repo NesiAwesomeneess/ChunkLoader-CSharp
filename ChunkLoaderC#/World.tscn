@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Prototype C#/ChunkLoaderC#/World.cs" type="Script" id=1]
+[ext_resource path="res://Prototype C#/ChunkLoaderC#/Player.cs" type="Script" id=2]
+[ext_resource path="res://Prototype C#/ChunkLoaderC#/ChunkNode.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 20 )
+
+[node name="World" type="Node2D"]
+position = Vector2( -2, 0 )
+script = ExtResource( 1 )
+playerPath = NodePath("Player")
+chunkSize = 80.0
+renderDistance = 1
+chunkNode = ExtResource( 3 )
+revolutionDistance = 8.0
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 421, 203 )
+script = ExtResource( 2 )
+
+[node name="Box" type="CollisionShape2D" parent="Player"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Cam" type="Camera2D" parent="Player"]
+current = true
+smoothing_enabled = true
